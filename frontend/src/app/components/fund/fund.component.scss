@@ -1,0 +1,29 @@
+.container {
+  padding: 20px;
+}
+
+.title {
+  margin: 20px 0 10px;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.funds-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.fund-card {
+  border-radius: 12px;
+}
+
+.transactions-table {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}

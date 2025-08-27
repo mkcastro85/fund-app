@@ -1,0 +1,17 @@
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci && npm cache clean --force
+
+COPY . .
+
+RUN npm rebuild esbuild @esbuild/linux-x64
+
+EXPOSE 4200
+
+
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "4200"]

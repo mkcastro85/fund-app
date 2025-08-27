@@ -1,0 +1,31 @@
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo-fondos
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: fundsDb
+    volumes:
+      - mongo_data:/data/db
+
+  app:
+    build: ./backend/
+    container_name: fund-app
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/fundsDb
+    depends_on:
+      - mongo
+  
+  frontend:
+    build: ./frontend/
+    container_name: fund-frontend
+    ports:
+      - "4200:4200"   
+    depends_on:
+      - app
+volumes:
+  mongo_data:
